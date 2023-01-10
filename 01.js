@@ -75,9 +75,3 @@ class Daemon extends Character {
         super(name, 'Daemon')
     }
 }
-
-const bo = new Bowman('Bo');
-
-for(let i = 0; i < 15; i++) {
-    bo.levelUp()
-}
