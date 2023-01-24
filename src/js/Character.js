@@ -1,5 +1,6 @@
 class Character {
-  constructor(name, type, attack = 1, defence = 1) {
+  constructor(name, type) {
+    const types = ['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'];
     if (name.length < 2 || name.length > 10) {
       throw new Error('Недопустимое имя');
     }
@@ -7,14 +8,12 @@ class Character {
     this.type = type;
     this.health = 100;
     this.level = 1;
-    if (typeof attack !== 'number' || attack <= 0) {
-      throw new Error('Недопустимое значение атаки');
+
+    if (!types.includes(type)) {
+      throw new Error('Неизвестное существо');
     }
-    if (typeof defence !== 'number' || defence >= 100 || defence < 0) {
-      throw new Error('Недопустимое значение защиты');
-    }
-    this.attack = attack;
-    this.defence = defence;
+    this.attack = undefined;
+    this.defence = undefined;
   }
 
   levelUp() {

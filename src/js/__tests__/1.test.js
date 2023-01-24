@@ -6,6 +6,8 @@ import Swordsman from '../Swordsman';
 import Undead from '../Undead';
 import Zombie from '../Zombie';
 
+const testType = 'Bowman';
+
 test('test test', () => { const a = 5; expect(a).toEqual(5); });
 
 test.each([
@@ -14,7 +16,7 @@ test.each([
   [10, false],
   [11, true],
 ])('testing Character constructor on name validation with %i symbol(s)', (symbols, error) => {
-  function testFunction() { new Character('a'.repeat(symbols), 'TestType'); }
+  function testFunction() { new Character('a'.repeat(symbols), testType); }
   if (error) {
     expect(testFunction).toThrow(Error);
   } else {
@@ -23,25 +25,10 @@ test.each([
 });
 
 test.each([
-  [0, true],
-  [1, false],
-  [100, false],
-])('testing Character constructor on attack validation with %i attack', (attack, error) => {
-  function testFunction() { new Character('test', 'TestType', attack, 10); }
-  if (error) {
-    expect(testFunction).toThrow(Error);
-  } else {
-    expect(testFunction).not.toThrow(Error);
-  }
-});
-
-test.each([
-  [-5, true],
-  [0, false],
-  [99, false],
-  [100, true],
-])('testing Character constructor on defence validation with %i defence', (defence, error) => {
-  function testFunction() { new Character('test', 'TestType', 10, defence); }
+  ['Bowman', false],
+  ['NonexistantType', true],
+])('testing Character constructor type validation', (type, error) => {
+  function testFunction() { new Character('test', type); }
   if (error) {
     expect(testFunction).toThrow(Error);
   } else {
